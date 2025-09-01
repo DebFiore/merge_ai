@@ -5,82 +5,71 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   CheckCircle,
-  X,
   ArrowRight,
   Zap,
   Crown,
   Building,
   Star,
-  Sparkles
+  TrendingUp,
+  Phone,
+  MessageSquare,
+  Workflow,
+  Users
 } from "lucide-react";
 
 export default function Pricing() {
-  const [isAnnual, setIsAnnual] = useState(false);
-
   const plans = [
     {
-      name: "Silver",
+      name: "Professional",
       icon: Zap,
-      price: 1500,
-      description: "Ideal for Small to Mid-Size Businesses with Inbound & Outbound Call Handling",
+      price: 1997,
+      description: "Ideal for growing businesses ready to automate lead qualification",
       popular: false,
+      roiPromise: "3-4x return within 90 days through eliminated missed leads",
       features: [
-        "Everything in Bronze PLUS",
-        "4 AI Agents Total",
-        "4 Phone Numbers Total",
-        "50 Concurrent Calls Total",
-        "2 Calendar Links Total",
-        "Warm Transfer Capability",
-        "Advanced Text Messaging",
-        "Enhanced Email Integration",
-        "Agentic AI SMS Messaging",
-        "A2P Registration",
-        "Calendar & Appointment Scheduling",
-        "Advanced Workflow Automation",
-        "White Glove Onboarding",
-        "Multi-Campaign Support",
-        "24/7 Technical Support"
-      ]
+        "AI Conversational Voice Agent for 24/7/365 lead qualification and appointment setting",
+        "Standard omnichannel support (SMS/email templates)",
+        "CRM integration (Salesforce, HubSpot, Zoho)",
+        "Dedicated implementation specialist",
+        "500 minutes of talk time"
+      ],
+      accent: "#00839C"
     },
     {
-      name: "Gold",
+      name: "Enterprise",
       icon: Star,
-      price: 3000,
-      description: "Great for Mid - Large Size Businesses with Robust Lead Campaigns",
+      price: 3997,
+      description: "Ideal for businesses requiring custom workflows and deep integrations",
       popular: true,
+      roiPromise: "5-6x return through conversion optimization and operational efficiency",
       features: [
-        "Everything in Silver PLUS",
-        "8 AI Agents Total",
-        "8 Phone Numbers Total",
-        "100 Concurrent Calls Total",
-        "4 Calendar Links Total",
-        "All Receptionists",
-        "Advanced Chat Bot",
-        "Robust Lead Generation",
-        "Multi-Campaign Management",
-        "Advanced Analytics",
-        "Dedicated Account Support"
-      ]
+        "Everything in Professional PLUS:",
+        "Custom multi-step workflow development",
+        "Bespoke omnichannel campaigns triggered by conversation cues",
+        "Advanced API integrations to any business system",
+        "Monthly optimization and performance reporting",
+        "1,500 minutes of talk time"
+      ],
+      accent: "#DB07b5"
     },
     {
-      name: "Platinum",
-      icon: Building,
-      price: 5000,
-      description: "Enterprise Solution for Large Organizations Managing Complex Lead Campaigns",
+      name: "Strategic Partnership",
+      icon: Crown,
+      price: 8500,
+      priceLabel: "$8,500+ monthly",
+      description: "For large organizations, franchises, and enterprise accounts",
       popular: false,
+      roiPromise: "7-10x return through scalable automation and competitive advantage",
       features: [
-        "Everything in Gold PLUS",
-        "16 AI Agents Total",
-        "16 Phone Numbers Total",
-        "150 Concurrent Calls Total",
-        "8 Calendar Links Total",
-        "50 Hours Custom Development",
-        "Dedicated Support Manager",
-        "Custom API Integrations",
-        "White Label Options",
-        "Enterprise Analytics & Reporting",
-        "Priority Implementation"
-      ]
+        "Everything in Enterprise PLUS:",
+        "White-label platform access",
+        "Multi-agent deployment across departments",
+        "Custom AI training on proprietary data",
+        "24/7 priority support with dedicated account management",
+        "5,000 minutes of talk time",
+        "Quarterly strategic business reviews"
+      ],
+      accent: "#E501E4"
     }
   ];
 
@@ -95,9 +84,9 @@ export default function Pricing() {
               <span className="text-sm font-medium text-white">Simple, Transparent Pricing</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-8">
-              Choose Your <span className="gradient-text relative inline-block">
-                Perfect
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
+              AI <span className="gradient-text relative inline-block">
+                Solutions
                 <svg
                   className="absolute -bottom-1 sm:-bottom-2 left-0 w-full"
                   viewBox="0 0 150 8"
@@ -120,16 +109,17 @@ export default function Pricing() {
                     strokeLinecap="round"
                   />
                 </svg>
-              </span> Plan
+              </span> Aligned for Growth
             </h1>
 
             <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-              Whether you're a solopreneur or an enterprise powerhouse, MERGE AI offers flexible plans designed to match your needs and budget. Start small or go all-in; our pricing scales with your success, giving you the freedom to grow at your own pace.
+              Choose the AI automation solution that matches your business scale and growth objectives. 
+              Each tier is designed to deliver measurable ROI from day one.
             </p>
           </div>
 
           {/* Pricing Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 items-start">
             {plans.map((plan, index) => (
               <Card
                 key={index}
@@ -148,12 +138,9 @@ export default function Pricing() {
                 )}
 
                 <CardHeader className="text-center pb-4">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center ${
-                    plan.popular
-                      ? 'bg-gradient-to-r from-[#DB07b5] to-[#E501E4]'
-                      : 'bg-white/10'
-                  }`}>
-                    <plan.icon className={`w-8 h-8 ${plan.popular ? 'text-white' : 'text-gray-300'}`} />
+                  <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center`}
+                       style={{ backgroundColor: `${plan.accent}20`, border: `1px solid ${plan.accent}30` }}>
+                    <plan.icon className="w-8 h-8" style={{ color: plan.accent }} />
                   </div>
 
                   <CardTitle className="text-2xl font-bold text-white">{plan.name}</CardTitle>
@@ -161,31 +148,38 @@ export default function Pricing() {
 
                   <div className="mt-6">
                     <div className="flex items-baseline justify-center">
-                      <span className="text-2xl font-bold text-white">
-                        ${plan.price.toLocaleString()}
+                      <span className="text-3xl font-bold text-white">
+                        {plan.priceLabel || `$${plan.price.toLocaleString()}`}
                       </span>
-                      <span className="text-gray-400 ml-2">/month</span>
+                      {!plan.priceLabel && <span className="text-gray-400 ml-2">/month</span>}
                     </div>
+                  </div>
+
+                  {/* ROI Promise */}
+                  <div className="mt-6 p-4 rounded-lg border border-white/20" style={{ backgroundColor: `${plan.accent}10` }}>
+                    <div className="text-sm font-semibold text-gray-300 mb-2">ROI Promise:</div>
+                    <div className="text-white font-bold text-sm leading-relaxed">{plan.roiPromise}</div>
                   </div>
                 </CardHeader>
 
                 <CardContent className="pt-0 flex flex-col flex-grow">
-                  <Button
-                    data-form-trigger="true"
-                    className="w-full py-3 rounded-full font-medium mb-8 gradient-bg text-white gradient-hover"
-                  >
-                    Get Started
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-
-                  <div className="space-y-3">
+                  <div className="space-y-3 mb-8">
                     {plan.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-[#00839C] mr-3 flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5 mr-3" style={{ color: plan.accent }} />
                         <span className="text-gray-300 text-sm leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
+
+                  <Button
+                    data-form-trigger="true"
+                    className="w-full py-3 rounded-full font-medium mt-auto text-white gradient-hover"
+                    style={{ backgroundColor: plan.accent }}
+                  >
+                    Get Started
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -193,11 +187,51 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Value Proposition Section */}
       <section className="section-padding bg-[#02012d]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              How MERGE AI <span className="gradient-text">Delivers ROI</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Every tier is designed around measurable business outcomes, not just features
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="dark-card text-center">
+              <CardContent className="p-8">
+                <Phone className="w-12 h-12 text-[#00839C] mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-white mb-4">Never Miss Revenue</h3>
+                <p className="text-gray-300">Every inbound call, text, and email becomes a qualified opportunity</p>
+              </CardContent>
+            </Card>
+
+            <Card className="dark-card text-center">
+              <CardContent className="p-8">
+                <MessageSquare className="w-12 h-12 text-[#DB07b5] mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-white mb-4">Context That Converts</h3>
+                <p className="text-gray-300">AI agents remember every detail and build relationships that close deals</p>
+              </CardContent>
+            </Card>
+
+            <Card className="dark-card text-center">
+              <CardContent className="p-8">
+                <TrendingUp className="w-12 h-12 text-[#E501E4] mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-white mb-4">Measurable Growth</h3>
+                <p className="text-gray-300">Track ROI with detailed analytics and conversion metrics</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-padding bg-white/5">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Pricing <span className="gradient-text">Questions?</span>
             </h2>
             <p className="text-xl text-gray-300">
@@ -236,14 +270,14 @@ export default function Pricing() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-white/5">
+      <section className="section-padding bg-[#02012d]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
             Ready to Get Started?
           </h2>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            Join thousands of companies using MERGE AI to transform their outreach efforts.
-            Get started today.
+            Join thousands of companies using MERGE AI to transform their revenue operations.
+            Start capturing the leads you're missing today.
           </p>
           <Button data-form-trigger="true" className="gradient-bg text-white px-12 py-4 rounded-full text-lg font-medium gradient-hover">
             Book a Demo

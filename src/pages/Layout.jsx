@@ -64,7 +64,8 @@ export default function Layout({ children, currentPageName }) {
   const lightLogoUrl = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6c7112045_MERGEAIhorizontallogowhitetransparent.png";
 
   const headerNavigationItems = [
-    { name: "Features", url: createPageUrl("Features") },
+    { name: "Home", url: createPageUrl("Home") },
+    { name: "Technology", url: createPageUrl("Technology") },
     { name: "Integrations", url: createPageUrl("Integrations") },
     { name: "Onboarding", url: createPageUrl("Onboarding") },
     { name: "Pricing", url: createPageUrl("Pricing") },

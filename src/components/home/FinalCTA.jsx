@@ -1,61 +1,62 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-import { createPageUrl } from '@/utils';
-import { ArrowRight, CheckCircle } from 'lucide-react';
-import AIAgentDemo from './AIAgentDemo';
+import { Card, CardContent } from "@/components/ui/card";
+import { DollarSign, ArrowRight } from 'lucide-react';
 
 export default function FinalCTA() {
   return (
-    <>
-      {/* AI Agent Demo Section - TEMPORARY FOR TESTING */}
-      <AIAgentDemo />
-      
-      {/* Original CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-[#00839C]/10 via-white/5 to-[#E501E4]/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Capture Every Opportunity?
-          </h2>
-          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            Join the businesses transforming their lead response with AI. 
-            Get started in under 48 hours.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button 
-              data-form-trigger="true"
-              className="text-white px-12 py-4 rounded-full text-lg font-semibold shadow-2xl transition-all duration-300 hover:scale-105"
-              style={{ backgroundColor: '#00839C' }}
-            >
-              Get Started
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
-            <Button 
-              data-form-trigger="true"
-              className="text-white px-10 py-4 rounded-full text-lg font-semibold shadow-2xl transition-all duration-300 hover:scale-105"
-              style={{ backgroundColor: '#00839C' }}
-            >
-              Watch a Demo
-            </Button>
-          </div>
+    <section className="section-padding bg-[#02012d]">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          Start Capturing Revenue
+          <span className="gradient-text block">You're Losing Today</span>
+        </h2>
+        
+        <p className="text-xl text-gray-300 mb-4 max-w-2xl mx-auto">
+          The businesses winning today are the ones that stopped treating AI like a cost center and started using it as a revenue driver.
+        </p>
+        
+        <p className="text-lg font-semibold text-white mb-8">
+          Every day you wait is revenue walking out the door.
+        </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-gray-400 text-sm">
-            <div className="flex items-center">
-              <CheckCircle className="w-4 h-4 mr-2 text-[#00839C]" />
-              No setup fees
-            </div>
-            <div className="flex items-center">
-              <CheckCircle className="w-4 h-4 mr-2 text-[#00839C]" />
-              48-hour deployment
-            </div>
-            <div className="flex items-center">
-              <CheckCircle className="w-4 h-4 mr-2 text-[#00839C]" />
-              Cancel anytime
-            </div>
+        <div className="mb-8">
+          <h3 className="text-2xl font-bold text-white mb-6">See MERGE AI In Action</h3>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <button 
+              data-form-trigger="true"
+              className="bg-[#00839C] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#00839C]/80 transition-all duration-300 flex items-center justify-center"
+            >
+              Test Our Lead Capture Agent
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </button>
+            <button 
+              data-form-trigger="true"
+              className="gradient-bg text-white px-8 py-3 rounded-full font-semibold gradient-hover flex items-center justify-center"
+            >
+              Try Our Appointment Booking System
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </button>
           </div>
         </div>
-      </section>
-    </>
+
+        <Card className="dark-card max-w-2xl mx-auto">
+          <CardContent className="p-8 text-center">
+            <DollarSign className="w-12 h-12 text-[#00839C] mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Get Your Revenue Assessment
+            </h3>
+            <p className="text-gray-300 mb-6">
+              Book a 15-minute call to see exactly how much revenue your current system is leaving on the table—and how MERGE AI captures it.
+            </p>
+            <button 
+              data-form-trigger="true"
+              className="gradient-bg text-white px-8 py-3 rounded-full font-semibold gradient-hover"
+            >
+              Book Your Assessment
+            </button>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
   );
 }

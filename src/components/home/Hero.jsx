@@ -21,7 +21,7 @@ export default function Hero() {
         >
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-[#00839C]/20 via-[#DB07b5]/20 to-[#E501E4]/20 border border-[#00839C]/30 mb-8 backdrop-blur-sm">
             <Zap className="w-4 h-4 text-[#00839C] mr-2" />
-            <span className="text-sm font-medium text-white">The End of Missed Leads</span>
+            <span className="text-sm font-medium text-white">Agentic AI Automations</span>
           </div>
         </motion.div>
         
@@ -66,7 +66,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl leading-relaxed"
         >
-          MERGE AI deploys an Agentic AI workforce that instantly qualifies, nurtures, and books leads across every channel. Stop losing customers to slow response times.
+          MERGE AI delivers an outcome-driven Agentic AI workforce with omni-channel intelligence, powered by proprietary automations that generate unmatched ROI.
         </motion.p>
         
         <motion.div 

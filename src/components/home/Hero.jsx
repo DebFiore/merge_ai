@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
+import VoiceAgentDemo from './VoiceAgentDemo';
 
 export default function Hero() {
   return (
@@ -10,7 +11,7 @@ export default function Hero() {
       {/* Background Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1000px] max-h-[1000px] bg-gradient-to-tr from-[#DB07b5]/30 via-[#00839C]/20 to-[#E501E4]/30 rounded-full blur-3xl opacity-50 animate-pulse"></div>
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#00839C]/30 rounded-full blur-3xl opacity-40"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E501E4]/20 rounded-full blur-3xl opacity-40"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#E501E4]/20 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-[#00839C]/25 rounded-full blur-2xl opacity-30"></div>
       
       <div className="relative z-10 flex flex-col items-center">
@@ -68,28 +69,15 @@ export default function Hero() {
         >
           MERGE AI delivers an outcome-driven Agentic AI workforce with omni-channel intelligence, powered by proprietary automations that generate unmatched ROI.
         </motion.p>
-        
-        <motion.div 
+
+        {/* Voice Agent Demo */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center"
+          className="mb-8"
         >
-          <Button 
-            data-form-trigger="true"
-            className="text-white px-10 py-4 rounded-full text-lg font-semibold shadow-2xl transition-all duration-300 hover:scale-105"
-            style={{ backgroundColor: '#00839C' }}
-          >
-            Get Started
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-          <Button 
-            data-form-trigger="true"
-            className="text-white px-8 py-4 rounded-full text-lg font-semibold shadow-2xl transition-all duration-300 hover:scale-105"
-            style={{ backgroundColor: '#00839C' }}
-          >
-            Watch a Demo
-          </Button>
+          <VoiceAgentDemo />
         </motion.div>
       </div>
     </section>

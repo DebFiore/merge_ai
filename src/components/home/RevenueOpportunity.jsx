@@ -10,17 +10,17 @@ export default function RevenueOpportunity() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
-            The Revenue Opportunity
-            <span className="gradient-text block leading-tight">You're Missing</span>
+            The Business Transformation
+            <span className="gradient-text block leading-tight">Opportunity You Don't Want to Miss</span>
           </h2>
           <p className="text-xl text-gray-300 leading-relaxed">
-            Most AI agents crumble once conversations go beyond one or two steps. They lose track, force repetition, and miss conversion opportunities. Every incomplete conversation is uncaptured revenue.
+            Our Agent-to-Agent Architecture: Intelligent systems communicate and collaborate to achieve complex tasks
           </p>
         </div>
 
         <div className="mb-12">
           <h3 className="text-3xl font-bold text-white text-center mb-8 leading-tight">
-            Why Context-Aware AI <span style={{ color: '#00839C' }}>Drives Results</span>
+            Why Integrated Agent Architecture <span style={{ color: '#00839C' }}>Drives Results</span>
           </h3>
         </div>
 
@@ -34,26 +34,26 @@ export default function RevenueOpportunity() {
           >
             <Card className="dark-card h-full">
               <CardContent className="p-8">
-                <h4 className="text-2xl font-bold text-white text-center mb-8">Older, Traditional Business Systems</h4>
+                <h4 className="text-2xl font-bold text-white text-center mb-8">Fragmented AI Tool Deployments</h4>
                 
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <X className="w-5 h-5 text-red-400 mr-3 flex-shrink-0 mt-1" />
-                    <span className="text-gray-300 text-lg">Missed calls become missed opportunities and lost revenue.</span>
+                    <span className="text-gray-300 text-lg">Disconnected AI tools create data silos and process bottlenecks</span>
                   </div>
                   <div className="flex items-start">
                     <X className="w-5 h-5 text-red-400 mr-3 flex-shrink-0 mt-1" />
-                    <span className="text-gray-300 text-lg">Prospects abandon incomplete processes and move on to your competitor.</span>
+                    <span className="text-gray-300 text-lg">Prospects experience inconsistent interactions across channels and departments</span>
                   </div>
                   <div className="flex items-start">
                     <X className="w-5 h-5 text-red-400 mr-3 flex-shrink-0 mt-1" />
-                    <span className="text-gray-300 text-lg">Reps spend 10-20 hours per week on admin work that AI should handle.</span>
+                    <span className="text-gray-300 text-lg">Teams waste 15-25 hours weekly on manual processes that intelligent agents could orchestrate</span>
                   </div>
                 </div>
                 
                 <div className="mt-8 p-6 bg-[#DB07b5] rounded-lg border border-[#DB07b5] text-center">
                   <div className="text-white font-bold text-xl">
-                    Significant revenue potential sitting uncaptured
+                    Your systems aren't talking—revenue is leaking
                   </div>
                 </div>
               </CardContent>
@@ -69,26 +69,26 @@ export default function RevenueOpportunity() {
           >
             <Card className="dark-card border-[#00839C]/50 h-full">
               <CardContent className="p-8">
-                <h4 className="text-2xl font-bold text-white text-center mb-8">MERGE AI Delivers Results</h4>
+                <h4 className="text-2xl font-bold text-white text-center mb-8">MERGE AI's Integrated Agent Architecture</h4>
                 
                 <div className="space-y-4">
                   <div className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0 mt-1" />
-                    <span className="text-gray-300 text-lg">Every inbound call becomes a booked appointment.</span>
+                    <span className="text-gray-300 text-lg">Every business touchpoint becomes an optimized revenue opportunity</span>
                   </div>
                   <div className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0 mt-1" />
-                    <span className="text-gray-300 text-lg">Real-time qualification that converts 40-60% higher than call centers.</span>
+                    <span className="text-gray-300 text-lg">Intelligent agent networks that deliver 3-5x higher conversion than fragmented systems</span>
                   </div>
                   <div className="flex items-start">
                     <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0 mt-1" />
-                    <span className="text-gray-300 text-lg">Seamless handoffs that preserve context and close deals.</span>
+                    <span className="text-gray-300 text-lg">Seamless cross-departmental workflows that preserve context and accelerate growth</span>
                   </div>
                 </div>
                 
                 <div className="mt-8 p-6 bg-[#DB07b5] rounded-lg border border-[#DB07b5] text-center">
                   <div className="text-white font-bold text-xl">
-                    Measurable revenue growth you can see on your balance sheet
+                    Measurable business transformation you can track on your P&L
                   </div>
                 </div>
               </CardContent>

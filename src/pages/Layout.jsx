@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { createPageUrl } from "@/utils";
@@ -45,8 +44,6 @@ export default function Layout({ children, currentPageName }) {
 
   useEffect(() => {
     const handleOpenModal = (e) => {
-      // Use .closest() to find the trigger element, checking the target and its parents.
-      // This is more robust than traversing the DOM manually.
       const triggerElement = e.target.closest('[data-form-trigger="true"]');
       
       if (triggerElement) {
@@ -69,12 +66,14 @@ export default function Layout({ children, currentPageName }) {
     { name: "Integrations", url: createPageUrl("Integrations") },
     { name: "Onboarding", url: createPageUrl("Onboarding") },
     { name: "Pricing", url: createPageUrl("Pricing") },
+    { name: "Agent Marketplace", url: createPageUrl("Pricing") + "#agent-marketplace" },
+    { name: "Blog", url: createPageUrl("blog") },
   ];
 
   const footerResourceItems = [
     { name: "Affiliate Program", url: createPageUrl("Affiliate") },
     { name: "FAQ", url: createPageUrl("FAQ") },
-    { name: "Blog", url: createPageUrl("Blog") },
+    { name: "Blog", url: createPageUrl("blog") },
   ];
 
   const legalLinks = [
@@ -158,9 +157,14 @@ export default function Layout({ children, currentPageName }) {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Button data-form-trigger="true" className="gradient-bg text-white px-8 py-2 rounded-full font-medium gradient-hover">
+              <a 
+                href="https://calendly.com/mergeai/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gradient-bg text-white px-8 py-2 rounded-full font-medium gradient-hover inline-block"
+              >
                 Book a Demo
-              </Button>
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -191,10 +195,15 @@ export default function Layout({ children, currentPageName }) {
                   {item.name}
                 </Link>
               ))}
-              <Button data-form-trigger="true" className="gradient-bg text-white w-full py-3 rounded-full font-medium"
-                onClick={() => setIsMobileMenuOpen(false)}> {/* Close mobile menu when button is clicked */}
+              <a 
+                href="https://calendly.com/mergeai/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gradient-bg text-white w-full py-3 rounded-full font-medium block text-center"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 Book a Demo
-              </Button>
+              </a>
             </div>
           </div>
         )}
@@ -285,4 +294,3 @@ export default function Layout({ children, currentPageName }) {
     </div>
   );
 }
-

@@ -22,14 +22,14 @@ export default function WhyChooseMerge() {
     },
     {
       icon: MessageCircle,
-      title: "Real Conversations That Convert",
+      title: "Intelligent Business Process Automation", // Updated title
       description: "Natural flow and context awareness drive results.",
       metric: "40-60% higher booking rates compared to traditional call centers or forms.",
       accent: "#DB07b5"
     },
     {
       icon: Workflow,
-      title: "Integrated Workflow Automation",
+      title: "Integrated Agent Ecosystems", // Updated title as per request
       description: "Agents update your CRM, send reminders, and route calls automatically.",
       metric: "Save 10-20 hours per week of admin time per rep.",
       accent: "#E501E4"

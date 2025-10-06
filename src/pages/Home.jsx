@@ -6,6 +6,7 @@ import RevenueOpportunity from '@/components/home/RevenueOpportunity';
 import ProvenResults from '@/components/home/ProvenResults';
 import FourPillars from '@/components/home/FourPillars';
 import TechnologyWorks from '@/components/home/TechnologyWorks';
+import AgentMarketplace from '@/components/home/AgentMarketplace';
 import WhyChooseMerge from '@/components/home/WhyChooseMerge';
 import Testimonials from '@/components/home/Testimonials';
 import FinalCTA from '@/components/home/FinalCTA';
@@ -20,6 +21,7 @@ export default function Home() {
       <ProvenResults />
       <FourPillars />
       <TechnologyWorks />
+      <AgentMarketplace />
       <WhyChooseMerge />
       <Testimonials />
       <FinalCTA />

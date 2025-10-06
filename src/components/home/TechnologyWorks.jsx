@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -15,11 +16,11 @@ export default function TechnologyWorks() {
   const technologies = [
     {
       icon: Workflow,
-      text: "Execute complex workflows to perform complete business tasks from start to finish"
+      text: "Architect autonomous multi-agent workflows that execute sophisticated business strategies with minimal human oversight—from intelligent lead qualification through complex deal orchestration"
     },
     {
       icon: Users,
-      text: "Deploy multi-agent teams trained to accomplish a chain of tasks working together seamlessly"
+      text: "Deploy specialized agent ecosystems that collaborate through advanced RAG-powered knowledge sharing, enabling complex decision-making and strategic business process automation"
     },
     {
       icon: MessageSquare,
@@ -27,7 +28,7 @@ export default function TechnologyWorks() {
     },
     {
       icon: Database,
-      text: "Integrate seamlessly with your CRM, calendar, and communication stack"
+      text: "Deep integration with enterprise systems enables agents to access, analyze, and act on your complete business data ecosystem in real-time"
     },
     {
       icon: Zap,

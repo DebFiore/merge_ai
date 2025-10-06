@@ -61,14 +61,17 @@ export default function Hero() {
           </span>
         </motion.h1>
         
-        <motion.p 
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl leading-relaxed"
         >
-          MERGE AI delivers an outcome-driven Agentic AI workforce with omni-channel intelligence, powered by proprietary automations that generate unmatched ROI.
-        </motion.p>
+          <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">Enterprise Agentic AI Architecture Designed to Scale Your Business</h2>
+          <p className="text-gray-400">
+            Cut your operational costs by 60% and scale your revenue without limits—with AI agents that handle your lead outreach, sales calls, and repetitive workflows so your team can focus on closing deals and growing your business.
+          </p>
+        </motion.div>
 
         {/* Voice Agent Demo */}
         <motion.div

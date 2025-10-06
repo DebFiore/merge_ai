@@ -208,18 +208,18 @@ export default function Affiliate() {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[#00839C] mb-2">Silver Plan</div>
-                  <div className="text-gray-300">$225 commission</div>
+                  <div className="text-3xl font-bold text-[#00839C] mb-2">Professional</div>
+                  <div className="text-gray-300">$300 commission</div>
                   <div className="text-sm text-gray-400">on first month's payment</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[#DB07b5] mb-2">Gold Plan</div>
-                  <div className="text-gray-300">$450 commission</div>
+                  <div className="text-3xl font-bold text-[#DB07b5] mb-2">Enterprise</div>
+                  <div className="text-gray-300">$525 commission</div>
                   <div className="text-sm text-gray-400">on first month's payment</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[#E501E4] mb-2">Platinum Plan</div>
-                  <div className="text-gray-300">$750 commission</div>
+                  <div className="text-3xl font-bold text-[#E501E4] mb-2">Strategic Partnership</div>
+                  <div className="text-gray-300">$1,275 commission</div>
                   <div className="text-sm text-gray-400">on first month's payment</div>
                 </div>
               </div>

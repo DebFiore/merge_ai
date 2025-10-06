@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Home, Shield, CreditCard, Building, HeartPulse, Landmark } from 'lucide-react';
+import { TrendingUp, Home, Shield, CreditCard, Building, HeartPulse, Landmark, Car, Heart, Hotel } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ProvenResults() {
@@ -27,7 +27,7 @@ export default function ProvenResults() {
     },
     {
       icon: Landmark,
-      industry: "BANKING",
+      industry: "FINANCE", // Changed from "BANKING" to "FINANCE"
       headline: "Secure Customer Engagement",
       quote: "Our AI agents handle account inquiries, loan pre-approvals, and appointment scheduling while maintaining strict security protocols. We've reduced call center volume by 45% and increased loan applications by 30%, all while ensuring full regulatory compliance.",
       attribution: "Community Banking Network",
@@ -54,12 +54,39 @@ export default function ProvenResults() {
     },
     {
       icon: HeartPulse,
-      industry: "HEALTH & WELLNESS",
+      industry: "BEAUTY & WELLNESS", // Changed from "HEALTH & WELLNESS" to "BEAUTY & WELLNESS"
       headline: "HIPAA-Safe Growth",
       quote: "Patient scheduling, inquiry triage, and compliant engagement—all automated. We cut admin time by 60% while improving patient experience.",
       attribution: "Multi-Location Clinic Network",
       accent: "#DB07b5",
       metrics: ["60% Less Admin", "HIPAA Compliant"]
+    },
+    {
+      icon: Car,
+      industry: "AUTOMOTIVE",
+      headline: "Test Drive to Purchase Pipeline",
+      quote: "Our AI agents handle service appointments, sales inquiries, and follow-ups 24/7. We increased showroom visits by 40% and converted 28% more test drives into purchases through intelligent lead nurturing.",
+      attribution: "Multi-Dealership Auto Group",
+      accent: "#E501E4",
+      metrics: ["40% More Showroom Visits", "28% Better Conversion"]
+    },
+    {
+      icon: Heart,
+      industry: "HEALTHCARE",
+      headline: "Patient-First Automation",
+      quote: "Appointment scheduling, insurance verification, and patient communication fully automated while maintaining HIPAA compliance. We reduced no-shows by 35% and increased patient satisfaction scores by 42%.",
+      attribution: "Regional Healthcare Network",
+      accent: "#00839C",
+      metrics: ["35% Fewer No-Shows", "42% Higher Satisfaction"]
+    },
+    {
+      icon: Hotel,
+      industry: "HOSPITALITY",
+      headline: "Guest Experience Excellence",
+      quote: "Our AI concierge handles reservations, guest requests, and upsells 24/7 in multiple languages. We boosted direct bookings by 50% and increased average guest spend by 32% through intelligent recommendations.",
+      attribution: "Boutique Hotel Chain",
+      accent: "#DB07b5",
+      metrics: ["50% More Direct Bookings", "32% Higher Guest Spend"]
     }
   ];
 

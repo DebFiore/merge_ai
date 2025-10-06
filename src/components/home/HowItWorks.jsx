@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { 
   LogIn,
@@ -9,20 +10,20 @@ import ChatMockup from './ChatMockup';
 const steps = [
   {
     icon: LogIn,
-    title: "1. Instant Capture",
-    description: "Your AI agent engages every lead via call, text, or email the second they reach out.",
+    title: "1. Intelligent Lead Orchestration",
+    description: "Our flagship agentic AI agents instantly engage every prospect across voice, text, and email channels with contextual, personalized outreach powered by advanced RAG technology and behavioral analysis",
     color: "#00839C"
   },
   {
     icon: Filter,
-    title: "2. Intelligent Qualification",
-    description: "The AI understands intent, answers questions, and qualifies prospects based on your criteria.",
+    title: "2. Autonomous Qualification & Nurturing",
+    description: "Multi-agent ecosystems conduct sophisticated discovery conversations, qualify prospects using dynamic criteria, and execute personalized nurturing sequences that adapt based on real-time engagement patterns",
     color: "#DB07b5"
   },
   {
     icon: CalendarCheck,
-    title: "3. Automated Booking",
-    description: "Qualified leads are automatically booked into your calendar, with seamless handoffs to your team.",
+    title: "3. Seamless Revenue Acceleration",
+    description: "Qualified opportunities are automatically routed through optimized booking workflows while our agent networks continue intelligent follow-up sequences, ensuring zero revenue leakage",
     color: "#E501E4"
   }
 ];
@@ -32,11 +33,11 @@ export default function HowItWorks() {
     <section className="section-padding">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20 max-w-3xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            From <span className="bg-gradient-to-r from-[#00839C] via-[#DB07b5] to-[#E501E4] bg-clip-text text-transparent">First Contact to Closed Deal</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-snug">
+            Scale Revenue. <span className="bg-gradient-to-r from-[#00839C] via-[#DB07b5] to-[#E501E4] bg-clip-text text-transparent leading-snug">Not Headcount.</span>
           </h2>
           <p className="text-xl text-gray-300 leading-relaxed">
-            Our autonomous AI agents handle the entire lead lifecycle, so your team can focus on what they do best: closing.
+            We build AI teams that automate everything from lead response to customer retention—so you generate more revenue without the headcount.
           </p>
         </div>
 

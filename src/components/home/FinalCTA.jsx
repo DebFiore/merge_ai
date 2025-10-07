@@ -1,7 +1,7 @@
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
-import { DollarSign, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
@@ -17,6 +17,26 @@ export default function FinalCTA() {
       script.type = 'text/javascript';
       document.body.appendChild(script);
     }
+
+    return () => {
+      try {
+        window.vapi?.stop?.();
+      } catch {
+        console.log('Error stopping Vapi session');
+      }
+
+      // remove any Vapi widget DOM that was appended outside React
+      const selectors = [
+        "vapi-widget",
+        ".vapi-widget",
+        "#vapi-widget",
+        '[id^="vapi-widget"]',
+        '[class*="vapi-widget"]',
+      ];
+      document
+        .querySelectorAll(selectors.join(","))
+        .forEach((el) => el.remove());
+    };
   }, []);
 
   return (

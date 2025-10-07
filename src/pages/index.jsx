@@ -52,7 +52,7 @@ export default function Pages() {
         <Route path="/onboarding" element={<Layout><Onboarding /></Layout>} />
         <Route path="/pricing" element={<Layout><Pricing /></Layout>} />
         <Route path="/blog" element={<Layout><Blog /></Layout>} />
-        <Route path="/blog/:id" element={<Layout><BlogPost /></Layout>} />
+        <Route path="/blog/:slug" element={<Layout><BlogPost /></Layout>} />
         <Route path="/faq" element={<Layout><FAQ /></Layout>} />
         <Route path="/affiliate" element={<Layout><Affiliate /></Layout>} />
         <Route path="/privacy" element={<Layout><Privacy /></Layout>} />

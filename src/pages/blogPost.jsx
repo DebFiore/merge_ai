@@ -1,37 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { createPageUrl } from "@/utils";
-import { BlogPost } from "@/api/entities";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { ArrowLeft, Calendar, Tag } from "lucide-react";
 import { format } from "date-fns";
+import blogsData from "@/data/blogs.json";
 
 export default function BlogPostPage() {
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { slug } = useParams();
 
   useEffect(() => {
-    async function loadPost() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const postId = urlParams.get("id");
-      if (!postId) {
-        setIsLoading(false);
-        return;
-      }
-      
-      setIsLoading(true);
-      try {
-        const fetchedPost = await BlogPost.get(postId);
-        setPost(fetchedPost);
-      } catch (error) {
-        console.error("Failed to load blog post:", error);
-      }
+    // Load post from JSON file
+    if (!slug) {
       setIsLoading(false);
+      return;
     }
-    loadPost();
-  }, []);
+    
+    setIsLoading(true);
+    try {
+      // Find the post by slug
+      const foundPost = blogsData.find((p) => p.slug === slug);
+      setPost(foundPost || null);
+    } catch (error) {
+      console.error("Failed to load blog post:", error);
+    }
+    setIsLoading(false);
+  }, [slug]);
 
   if (isLoading) {
     return (
@@ -46,7 +41,7 @@ export default function BlogPostPage() {
       <div className="min-h-screen bg-[#02012d] text-white flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold text-white mb-4">Post Not Found</h2>
         <Link
-          to={createPageUrl("blog")}
+          to="/blog"
           className="flex items-center text-[#DB07b5] font-semibold hover:text-white transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -62,7 +57,7 @@ export default function BlogPostPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="mb-12">
             <Link
-              to={createPageUrl("blog")}
+              to="/blog"
               className="flex items-center text-gray-300 hover:text-white transition-colors mb-8"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />

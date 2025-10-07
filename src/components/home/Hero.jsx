@@ -11,7 +11,7 @@ export default function Hero() {
       {/* Background Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1000px] max-h-[1000px] bg-gradient-to-tr from-[#DB07b5]/30 via-[#00839C]/20 to-[#E501E4]/30 rounded-full blur-3xl opacity-50 animate-pulse"></div>
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#00839C]/30 rounded-full blur-3xl opacity-40"></div>
-      <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#E501E4]/20 rounded-full blur-3xl opacity-40"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#E501E4]/20 rounded-full blur-3xl opacity-40"></div>
       <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-[#00839C]/25 rounded-full blur-2xl opacity-30"></div>
       
       <div className="relative z-10 flex flex-col items-center">

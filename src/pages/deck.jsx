@@ -261,7 +261,7 @@ const slides = [
     subtitle: "Elite Realty Partners",
     quote: "MERGE AI completely transformed how we manage leads. We're now able to respond to every inquiry instantly, qualify prospects automatically, and focus our team's energy where it matters most - closing deals. The system pays for itself many times over.",
     author: "Sarah Thompson",
-    title: "Director of Operations, Elite Realty Partners",
+    role: "Director of Operations, Elite Realty Partners",
     results: [
       { metric: "2x", label: "Lead Conversion Rate", detail: "From 12% to 24% in just 3 months" },
       { metric: "50%", label: "Reduction in Admin Hours", detail: "Saving 22+ hours per agent weekly" },
@@ -273,7 +273,7 @@ const slides = [
     subtitle: "Wellness Medical Center", 
     quote: "Our patient scheduling and follow-up processes have been revolutionized by MERGE AI. The platform handles appointment reminders, reschedules, and patient inquiries 24/7, freeing our staff to focus on direct patient care. The reduction in no-shows alone made this investment worthwhile within the first month.",
     author: "Dr. Michael Chen",
-    title: "Medical Director, Wellness Medical Center",
+    role: "Medical Director, Wellness Medical Center",
     results: [
       { metric: "30%", label: "Reduction in No-Shows", detail: "Saving $12,500+ monthly in lost revenue" },
       { metric: "75%", label: "Improved Response Rate", detail: "Patient inquiries answered in under 30 seconds" },
@@ -621,7 +621,7 @@ export default function Deck() {
             </div>
             <div className="mb-8">
               <div className="text-xl md:text-2xl font-bold text-white">{slide.author}</div>
-              <div className="text-lg text-gray-400">{slide.title}</div>
+              <div className="text-lg text-gray-400">{slide.role}</div>
             </div>
             {slide.results && (
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

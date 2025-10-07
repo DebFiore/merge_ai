@@ -1,11 +1,24 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { DollarSign, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
 export default function FinalCTA() {
+  useEffect(() => {
+    // Load Vapi widget script
+    const scriptId = 'vapi-widget-script';
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://unpkg.com/@vapi-ai/client-sdk-react/dist/embed/widget.umd.js';
+      script.async = true;
+      script.type = 'text/javascript';
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <section className="section-padding bg-[#02012d]">
       <div className="max-w-4xl mx-auto px-6 text-center">
@@ -42,6 +55,14 @@ export default function FinalCTA() {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Link>
           </div>
+        </div>
+
+        {/* Vapi Voice Assistant Widget */}
+        <div className="mb-8">
+          <vapi-widget 
+            assistant-id="0834080e-d1d3-44ca-9fcc-b8bd5abe3460" 
+            public-key="c72e9704-efd0-4da5-b797-9289962c0977"
+          ></vapi-widget>
         </div>
 
         <Card className="dark-card max-w-2xl mx-auto">

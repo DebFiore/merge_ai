@@ -1,8 +1,12 @@
-import React from 'react';
 import Hero from '@/components/home/Hero';
 import StatsMarquee from '@/components/home/StatsMarquee';
 import HowItWorks from '@/components/home/HowItWorks';
-import IndustrySolutions from '@/components/home/IndustrySolutions';
+import RevenueOpportunity from '@/components/home/RevenueOpportunity';
+import ProvenResults from '@/components/home/ProvenResults';
+import FourPillars from '@/components/home/FourPillars';
+import TechnologyWorks from '@/components/home/TechnologyWorks';
+import AgentMarketplace from '@/components/home/AgentMarketplace';
+import WhyChooseMerge from '@/components/home/WhyChooseMerge';
 import Testimonials from '@/components/home/Testimonials';
 import FinalCTA from '@/components/home/FinalCTA';
 
@@ -12,7 +16,12 @@ export default function Home() {
       <Hero />
       <StatsMarquee />
       <HowItWorks />
-      <IndustrySolutions />
+      <RevenueOpportunity />
+      <ProvenResults />
+      <FourPillars />
+      <TechnologyWorks />
+      <AgentMarketplace />
+      <WhyChooseMerge />
       <Testimonials />
       <FinalCTA />
     </div>

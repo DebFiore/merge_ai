@@ -36,7 +36,7 @@ export const useVapi = () => {
     
     setIsLoading(true);
     try {
-      await vapiRef.current.start('81cf4c15-be96-478d-a8c6-374dc1254ea5');
+      await vapiRef.current.start('0834080e-d1d3-44ca-9fcc-b8bd5abe3460');
     } catch (error) {
       console.error('Failed to start call:', error);
       setIsLoading(false);

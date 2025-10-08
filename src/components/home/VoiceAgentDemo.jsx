@@ -5,7 +5,6 @@ import { useVapi } from "@/hooks/useVapi";
 
 export default function VoiceAgentDemo() {
   const [isHovered, setIsHovered] = useState(false);
-  const [isActive, setIsActive] = useState(false);
   const [audioLevels, setAudioLevels] = useState(Array(48).fill(0));
   const { startCall, stopCall, isCallActive, isLoading } = useVapi();
 
@@ -21,7 +20,6 @@ export default function VoiceAgentDemo() {
   }, []);
 
   const handleVapiClick = () => {
-    setIsActive(true);
     // Check if on mobile device
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -77,42 +75,46 @@ export default function VoiceAgentDemo() {
         className={`
           relative overflow-hidden px-8 py-4 rounded-full text-lg font-semibold
           transition-all duration-300 transform hover:scale-105
-          ${isActive
+          ${isCallActive
             ? 'bg-gradient-to-r from-[#DB07b5] to-[#E501E4] text-white'
             : 'bg-[#00839C] hover:bg-gradient-to-r hover:from-[#DB07b5] hover:to-[#E501E4] text-white'
           }
         `}
         style={{
-          boxShadow: isActive || isHovered
+          boxShadow: isCallActive || isHovered
             ? '0 20px 40px rgba(219, 7, 181, 0.3)'
             : '0 10px 20px rgba(0, 131, 156, 0.2)'
         }}
       >
         <div className="flex items-center gap-3">
-          {isActive ? (
+          {isCallActive ? (
             <Phone className="w-6 h-6" />
           ) : (
             <Mic className="w-6 h-6" />
           )}
 
-          <span className="relative">
-            <span className={`transition-all duration-300 ${isHovered || isActive ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-              Talk to an Agent
+          {isCallActive ? (
+            <span>End Call</span>
+          ) : (
+            <span className="relative">
+              <span className={`transition-all duration-300 ${isHovered ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+                Talk to an Agent
+              </span>
+              <span className={`absolute inset-0 transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
+                Give it a Try
+              </span>
             </span>
-            <span className={`absolute inset-0 transition-all duration-300 ${isHovered || isActive ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'}`}>
-              {isActive ? 'Speaking...' : 'Give it a Try'}
-            </span>
-          </span>
+          )}
         </div>
 
         {/* Animated background for active state */}
-        {isActive && (
+        {isCallActive && (
           <div className="absolute inset-0 bg-gradient-to-r from-[#00839C]/50 to-[#E501E4]/50 animate-pulse" />
         )}
       </Button>
 
       {/* Connection Status */}
-      {isActive && (
+      {isCallActive && (
         <div className="flex items-center gap-2 text-sm text-gray-300">
           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
           Connected to MERGE AI Agent

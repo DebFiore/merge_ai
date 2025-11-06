@@ -27,7 +27,13 @@ const SchemaManager = ({ pageType, customSchemas = [] }) => {
     return [...schemas, ...customSchemas];
   };
 
-  return <>{getSchemasByPage()}</>;
+  const allSchemas = getSchemasByPage();
+
+  return (
+    <>
+      {allSchemas.map(schema => schema)}
+    </>
+  );
 };
 
 export default SchemaManager;

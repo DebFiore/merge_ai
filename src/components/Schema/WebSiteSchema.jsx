@@ -11,4 +11,4 @@ const WebSiteSchema = () => {
     "description": "AI-powered omnichannel lead generation platform featuring voice calling, text automation, and email marketing for businesses across multiple industries.",
     "publisher": {
       "@type": "Organization",
-      "@id": "https://mergemedia.ai#organization",
+     "@id": "https://mergemedia.ai#organization",

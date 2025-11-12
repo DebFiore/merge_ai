@@ -27,8 +27,8 @@ export default function Affiliate() {
     },
     {
       icon: Percent,
-      title: "15% Commission",
-      description: "Generous and industry-leading commissions. Earn up to $750+ from a single referral's first-month payment."
+      title: "40% Commission",
+      description: "Generous and industry-leading commissions. Earn up to $1000+ from a single referral's first-month payment."
     },
     {
       icon: Star,
@@ -121,7 +121,7 @@ export default function Affiliate() {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button data-form-trigger="true" className="gradient-bg text-white px-12 py-4 rounded-full text-lg font-medium gradient-hover">
-                Earn 15% Commission
+                Earn 40% Commission
               </Button>
               <Button data-form-trigger="true" className="bg-[#00839C] text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-[#00839C]/80">
                 Join the Program Today
@@ -198,7 +198,7 @@ export default function Affiliate() {
               </div>
               
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                15% Commission Structure
+                40% Commission Structure
               </h2>
               
               <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -209,17 +209,17 @@ export default function Affiliate() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-[#00839C] mb-2">Professional</div>
-                  <div className="text-gray-300">$300 commission</div>
+                  <div className="text-gray-300">$600 commission</div>
                   <div className="text-sm text-gray-400">on first month's payment</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-[#DB07b5] mb-2">Enterprise</div>
-                  <div className="text-gray-300">$525 commission</div>
+                  <div className="text-gray-300">$1,198 commission</div>
                   <div className="text-sm text-gray-400">on first month's payment</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-[#E501E4] mb-2">Strategic Partnership</div>
-                  <div className="text-gray-300">$1,275 commission</div>
+                  <div className="text-gray-300">$2,000 commission</div>
                   <div className="text-sm text-gray-400">on first month's payment</div>
                 </div>
               </div>

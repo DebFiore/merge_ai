@@ -477,6 +477,9 @@ export default function Pricing() {
                 </Button>
               </CardContent>
             </Card>
+                </div>
+        </div>
+      </section>
          
       {/* FAQ Section */}
       <section className="section-padding bg-white/5">

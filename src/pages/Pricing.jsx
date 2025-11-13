@@ -222,6 +222,29 @@ export default function Pricing() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* A-Team by MERGE AI */}
+<Card className="dark-card gradient-hover">
+  <CardContent className="p-8">
+    <h3 className="text-2xl font-bold text-white mb-4">A-Team by MERGE AI</h3>
+    <h4 className="text-lg font-semibold text-white mb-3">Your Complete Digital Office Team, Working in Perfect Sync</h4>
+    <p className="text-gray-300 mb-4 leading-relaxed">
+      Four specialized AI agents coordinate in real-time to handle every aspect of customer engagement from first contact to booking. While competitors deploy single agents that struggle with complex conversations, your A-Team operates like a trained office staff—each agent excelling in their role while seamlessly handing off context to teammates. With sub-600ms response times and enterprise-grade coordination, your customers experience the efficiency of AI with the sophistication of human team dynamics.
+    </p>
+    <div className="p-4 rounded-lg bg-[#00839C]/10 border border-[#00839C]/20 mb-6">
+      <div className="text-sm font-semibold text-[#00839C] mb-2">ROI Delivered:</div>
+      <p className="text-gray-300 text-sm leading-relaxed">
+        Convert 40% more leads by responding within seconds 24/7 with contextually aware conversations that never drop the ball. Reduce labor costs by 60-75% while improving response quality and consistency. Eliminate scheduling friction, reduce no-shows by 35%, and free your human team to focus on delivering exceptional service instead of playing phone tag. Scale your customer engagement without scaling headcount.
+      </p>
+    </div>
+    <Button
+      onClick={() => setIsAgentModalOpen(true)}
+      className="w-full bg-[#00839C] hover:bg-[#00839C]/80 text-white py-3 rounded-full font-medium"
+    >
+      Get Started
+      <ArrowRight className="w-4 h-4 ml-2" />
+    </Button>
+  </CardContent>
+</Card>
             {/* RAG Agent */}
             <Card className="dark-card gradient-hover">
               <CardContent className="p-8">
@@ -454,39 +477,7 @@ export default function Pricing() {
                 </Button>
               </CardContent>
             </Card>
-
-            {/* Content Automation Agent */}
-            <Card className="dark-card gradient-hover">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">Content Automation Agent</h3>
-
-                <h4 className="text-lg font-semibold text-white mb-3">Never Run Out of Engaging Content</h4>
-                <p className="text-gray-300 mb-4 leading-relaxed">
-                  Generates blog posts, social content, email copy, and marketing materials tailored to your brand voice and
-                  audience needs. Maintains content calendars and adapts to trending topics in your industry.
-                </p>
-
-                <div className="p-4 rounded-lg bg-[#E501E4]/10 border border-[#E501E4]/20 mb-6">
-                  <div className="text-sm font-semibold text-[#E501E4] mb-2">ROI Delivered:</div>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    Reduce content creation costs by 75%, publish 5x more content consistently, and improve SEO rankings.
-                    Eliminate content bottlenecks that limit growth and engagement.
-                  </p>
-                </div>
-
-                <Button
-                  onClick={() => setIsAgentModalOpen(true)}
-                  className="w-full bg-[#E501E4] hover:bg-[#E501E4]/80 text-white py-3 rounded-full font-medium"
-                >
-                  Get Started
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
+         
       {/* FAQ Section */}
       <section className="section-padding bg-white/5">
         <div className="max-w-4xl mx-auto px-6">

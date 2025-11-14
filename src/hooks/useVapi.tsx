@@ -51,7 +51,26 @@ export const useVapi = () => {
     
     console.log('Starting VAPI call...');
     setIsLoading(true);
+
     try {
+      // ============ FIREFOX AUDIO FIX - START ============
+      // Detect Firefox
+      const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+      
+      if (isFirefox) {
+        console.log('Firefox detected - checking audio context');
+        
+        // Access the audio context and resume if suspended
+        const audioContext = (vapiRef.current as any).audioContext;
+        
+        if (audioContext && audioContext.state === 'suspended') {
+          console.log('Audio context suspended - resuming...');
+          await audioContext.resume();
+          console.log('Audio context resumed for Firefox');
+        }
+      }
+      // ============ FIREFOX AUDIO FIX - END ============
+
       await vapiRef.current.start('0834080e-d1d3-44ca-9fcc-b8bd5abe3460');
       console.log('VAPI start method completed');
     } catch (error) {

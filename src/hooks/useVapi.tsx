@@ -54,25 +54,87 @@ export const useVapi = () => {
 
     try {
       // ============ FIREFOX AUDIO FIX - START ============
-      // Detect Firefox
       const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
       
       if (isFirefox) {
-        console.log('Firefox detected - checking audio context');
+        console.log('Firefox detected - applying audio playback fixes');
         
-        // Access the audio context and resume if suspended
-        const audioContext = (vapiRef.current as any).audioContext;
-        
-        if (audioContext && audioContext.state === 'suspended') {
-          console.log('Audio context suspended - resuming...');
-          await audioContext.resume();
-          console.log('Audio context resumed for Firefox');
+        // Fix 1: Ensure we have an AudioContext
+        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+        if (AudioContext) {
+          const ctx = new AudioContext();
+          console.log('Created AudioContext, state:', ctx.state);
+          
+          if (ctx.state === 'suspended') {
+            await ctx.resume();
+            console.log('AudioContext resumed');
+          }
+          
+          // Store reference for potential use
+          (window as any).__vapiAudioContext = ctx;
         }
+
+        // Fix 2: Play silent audio to unlock autoplay restrictions
+        console.log('Firefox: Playing silent audio to unlock autoplay');
+        const silentAudio = document.createElement('audio');
+        silentAudio.src = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
+        silentAudio.volume = 0.001;
+        silentAudio.autoplay = true;
+        silentAudio.style.display = 'none';
+        document.body.appendChild(silentAudio);
+        
+        try {
+          await silentAudio.play();
+          console.log('Firefox: Silent audio played successfully');
+          setTimeout(() => {
+            silentAudio.pause();
+            document.body.removeChild(silentAudio);
+          }, 100);
+        } catch (e) {
+          console.warn('Firefox: Silent audio play failed:', e);
+          try {
+            document.body.removeChild(silentAudio);
+          } catch {}
+        }
+
+        // Fix 3: Check if VAPI has audio context and ensure it's ready
+        const vapiInstance = vapiRef.current as any;
+        if (vapiInstance.audioContext) {
+          console.log('VAPI audio context found, state:', vapiInstance.audioContext.state);
+          if (vapiInstance.audioContext.state === 'suspended') {
+            await vapiInstance.audioContext.resume();
+            console.log('VAPI audio context resumed');
+          }
+        } else {
+          console.log('VAPI audio context not found yet');
+        }
+
+        // Fix 4: Small delay to ensure audio pipeline is ready
+        await new Promise(resolve => setTimeout(resolve, 150));
+        console.log('Firefox: Audio pipeline ready');
       }
       // ============ FIREFOX AUDIO FIX - END ============
 
       await vapiRef.current.start('0834080e-d1d3-44ca-9fcc-b8bd5abe3460');
       console.log('VAPI start method completed');
+
+      // ============ POST-START FIREFOX FIX ============
+      if (isFirefox) {
+        // After VAPI starts, check audio context again
+        setTimeout(() => {
+          const vapiInstance = vapiRef.current as any;
+          if (vapiInstance && vapiInstance.audioContext) {
+            console.log('Post-start audio context state:', vapiInstance.audioContext.state);
+            if (vapiInstance.audioContext.state === 'suspended') {
+              vapiInstance.audioContext.resume().then(() => {
+                console.log('Post-start: Audio context resumed');
+              });
+            }
+          }
+        }, 500);
+      }
+      // ============ POST-START FIREFOX FIX END ============
+
     } catch (error) {
       console.error('Failed to start call:', error);
       setIsCallActive(false);

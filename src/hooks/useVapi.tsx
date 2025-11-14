@@ -5,7 +5,6 @@ export const useVapi = () => {
   const vapiRef = useRef<Vapi | null>(null);
   const [isCallActive, setIsCallActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const audioObserverRef = useRef<MutationObserver | null>(null);
 
   useEffect(() => {
     vapiRef.current = new Vapi('c72e9704-efd0-4da5-b797-9289962c0977');
@@ -17,92 +16,96 @@ export const useVapi = () => {
       setIsCallActive(true);
       setIsLoading(false);
 
-      // ============ FIREFOX AUDIO ELEMENT FIX ============
+      // ============ FIREFOX MEDIASTREAM AUDIO FIX ============
       const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
       
       if (isFirefox) {
-        console.log('Firefox: Setting up audio element monitor');
+        console.log('Firefox: Monitoring for MediaStream audio');
         
-        // Watch for audio elements being added to the DOM
-        audioObserverRef.current = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-            mutation.addedNodes.forEach((node) => {
-              if (node.nodeName === 'AUDIO') {
-                const audioElement = node as HTMLAudioElement;
-                console.log('Firefox: New audio element detected');
+        // Check for audio elements repeatedly
+        const checkAudioInterval = setInterval(() => {
+          const audioElements = document.querySelectorAll('audio');
+          
+          audioElements.forEach((audio, index) => {
+            // Check if this audio element has a MediaStream (srcObject)
+            if ((audio as any).srcObject && (audio as any).srcObject instanceof MediaStream) {
+              const stream = (audio as any).srcObject as MediaStream;
+              const audioTracks = stream.getAudioTracks();
+              
+              console.log(`Firefox: Found MediaStream audio element ${index}`);
+              console.log(`Firefox: Audio tracks: ${audioTracks.length}`);
+              
+              audioTracks.forEach((track, trackIndex) => {
+                console.log(`Firefox: Track ${trackIndex} - enabled: ${track.enabled}, muted: ${track.muted}, readyState: ${track.readyState}`);
                 
-                // Ensure audio is not muted and volume is max
-                audioElement.muted = false;
-                audioElement.volume = 1.0;
-                audioElement.autoplay = true;
-                
-                // Force play when src is set
-                const originalSrcSetter = Object.getOwnPropertyDescriptor(
-                  HTMLMediaElement.prototype,
-                  'src'
-                )!.set;
-                
-                Object.defineProperty(audioElement, 'src', {
-                  set: function(value) {
-                    originalSrcSetter!.call(this, value);
-                    if (value) {
-                      console.log('Firefox: Audio src set, forcing play');
-                      setTimeout(() => {
-                        this.play().catch((e: any) => {
-                          console.warn('Firefox: Auto-play failed:', e);
-                        });
-                      }, 50);
-                    }
-                  }
-                });
-                
-                // Also listen for canplay event
-                audioElement.addEventListener('canplay', () => {
-                  console.log('Firefox: Audio canplay event');
-                  if (audioElement.paused) {
-                    audioElement.play().catch((e) => {
-                      console.warn('Firefox: Play on canplay failed:', e);
-                    });
-                  }
-                });
-                
-                // Listen for loadeddata
-                audioElement.addEventListener('loadeddata', () => {
-                  console.log('Firefox: Audio loadeddata event');
-                  if (audioElement.paused) {
-                    audioElement.play().catch((e) => {
-                      console.warn('Firefox: Play on loadeddata failed:', e);
-                    });
-                  }
+                // Ensure track is enabled
+                if (!track.enabled) {
+                  track.enabled = true;
+                  console.log(`Firefox: Enabled track ${trackIndex}`);
+                }
+              });
+              
+              // Ensure audio element settings
+              audio.muted = false;
+              audio.volume = 1.0;
+              
+              console.log(`Firefox: Audio element ${index} - muted: ${audio.muted}, volume: ${audio.volume}, paused: ${audio.paused}`);
+              
+              // If paused, try to play
+              if (audio.paused) {
+                console.log(`Firefox: Audio element ${index} is paused, attempting to play`);
+                audio.play().then(() => {
+                  console.log(`Firefox: Successfully played audio element ${index}`);
+                }).catch(e => {
+                  console.error(`Firefox: Failed to play audio element ${index}:`, e);
                 });
               }
-            });
-          });
-        });
-        
-        // Start observing the entire document
-        audioObserverRef.current.observe(document.body, {
-          childList: true,
-          subtree: true
-        });
-        
-        // Also check existing audio elements
-        setTimeout(() => {
-          const existingAudio = document.querySelectorAll('audio');
-          console.log(`Firefox: Found ${existingAudio.length} existing audio elements`);
-          existingAudio.forEach((audio) => {
-            audio.muted = false;
-            audio.volume = 1.0;
-            if (audio.paused && audio.src) {
-              console.log('Firefox: Playing existing audio element');
-              audio.play().catch((e) => {
-                console.warn('Firefox: Play existing audio failed:', e);
-              });
+              
+              // Firefox-specific: Recreate audio context and connect MediaStream
+              try {
+                const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+                const audioCtx = new AudioContext();
+                
+                if (audioCtx.state === 'suspended') {
+                  audioCtx.resume().then(() => {
+                    console.log('Firefox: AudioContext resumed for MediaStream');
+                  });
+                }
+                
+                // Create MediaStreamSource and connect to destination
+                const source = audioCtx.createMediaStreamSource(stream);
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.value = 1.0;
+                
+                source.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                console.log('Firefox: Created Web Audio pipeline for MediaStream');
+                
+                // Store reference to prevent garbage collection
+                (audio as any).__firefoxAudioContext = audioCtx;
+                (audio as any).__firefoxSource = source;
+                (audio as any).__firefoxGain = gainNode;
+                
+              } catch (e) {
+                console.error('Firefox: Failed to create Web Audio pipeline:', e);
+              }
+            } else if (!audio.src && !(audio as any).srcObject) {
+              console.log(`Firefox: Audio element ${index} has no source yet`);
             }
           });
-        }, 100);
+        }, 200); // Check every 200ms
+        
+        // Store interval reference
+        (vapi as any).__firefoxAudioInterval = checkAudioInterval;
+        
+        // Clear after 10 seconds (audio should be set up by then)
+        setTimeout(() => {
+          clearInterval(checkAudioInterval);
+          console.log('Firefox: Stopped monitoring for audio elements');
+        }, 10000);
       }
-      // ============ FIREFOX AUDIO ELEMENT FIX END ============
+      // ============ FIREFOX MEDIASTREAM AUDIO FIX END ============
     });
 
     vapi.on('call-end', () => {
@@ -110,29 +113,45 @@ export const useVapi = () => {
       setIsCallActive(false);
       setIsLoading(false);
       
-      // Clean up observer
-      if (audioObserverRef.current) {
-        audioObserverRef.current.disconnect();
-        audioObserverRef.current = null;
+      // Clean up Firefox interval
+      if ((vapi as any).__firefoxAudioInterval) {
+        clearInterval((vapi as any).__firefoxAudioInterval);
       }
     });
 
     vapi.on('speech-start', () => {
       console.log('VAPI: Speech started');
       
-      // Additional Firefox fix when speech starts
+      // Additional check when speech starts
       const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
       if (isFirefox) {
         setTimeout(() => {
           const audioElements = document.querySelectorAll('audio');
-          console.log(`Firefox: Speech started, checking ${audioElements.length} audio elements`);
+          console.log(`Firefox: Speech started check - ${audioElements.length} audio elements`);
+          
           audioElements.forEach((audio, index) => {
-            console.log(`Firefox: Audio ${index} - paused: ${audio.paused}, readyState: ${audio.readyState}, src: ${audio.src ? 'yes' : 'no'}`);
-            if (audio.paused && audio.src && audio.readyState >= 2) {
-              console.log(`Firefox: Force playing audio ${index}`);
-              audio.play().catch((e) => {
-                console.warn(`Firefox: Force play failed for audio ${index}:`, e);
+            const stream = (audio as any).srcObject;
+            if (stream instanceof MediaStream) {
+              console.log(`Firefox: MediaStream audio ${index} during speech`);
+              console.log(`Firefox: Audio paused: ${audio.paused}, muted: ${audio.muted}, volume: ${audio.volume}`);
+              
+              // Force unmute and max volume
+              audio.muted = false;
+              audio.volume = 1.0;
+              
+              // Check tracks
+              const audioTracks = stream.getAudioTracks();
+              audioTracks.forEach((track, trackIndex) => {
+                if (!track.enabled) {
+                  track.enabled = true;
+                  console.log(`Firefox: Re-enabled track ${trackIndex} during speech`);
+                }
               });
+              
+              // Try playing if paused
+              if (audio.paused) {
+                audio.play().catch(e => console.error('Firefox: Play during speech failed:', e));
+              }
             }
           });
         }, 100);
@@ -155,8 +174,10 @@ export const useVapi = () => {
 
     return () => {
       vapi.stop();
-      if (audioObserverRef.current) {
-        audioObserverRef.current.disconnect();
+      
+      // Clean up Firefox interval
+      if ((vapi as any).__firefoxAudioInterval) {
+        clearInterval((vapi as any).__firefoxAudioInterval);
       }
     };
   }, []);
@@ -172,19 +193,23 @@ export const useVapi = () => {
       const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
       
       if (isFirefox) {
-        console.log('Firefox: Preparing audio environment');
+        console.log('Firefox: Preparing for MediaStream audio');
         
-        // Create AudioContext and resume it
+        // Create and resume AudioContext
         const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-        if (AudioContext) {
-          const ctx = new AudioContext();
-          if (ctx.state === 'suspended') {
-            await ctx.resume();
-            console.log('Firefox: AudioContext resumed');
-          }
+        const audioCtx = new AudioContext();
+        
+        console.log(`Firefox: AudioContext state: ${audioCtx.state}`);
+        
+        if (audioCtx.state === 'suspended') {
+          await audioCtx.resume();
+          console.log('Firefox: AudioContext resumed');
         }
         
-        // Create a user-interaction triggered audio to unlock autoplay
+        // Store for later use
+        (window as any).__firefoxGlobalAudioContext = audioCtx;
+        
+        // Play a silent audio to unlock autoplay
         const unlockAudio = document.createElement('audio');
         unlockAudio.src = 'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA';
         unlockAudio.volume = 0.01;
@@ -194,7 +219,7 @@ export const useVapi = () => {
           await unlockAudio.play();
           console.log('Firefox: Autoplay unlocked');
         } catch (e) {
-          console.log('Firefox: Autoplay unlock failed (expected)');
+          console.log('Firefox: Autoplay unlock attempt made');
         }
         
         setTimeout(() => {
@@ -219,12 +244,8 @@ export const useVapi = () => {
     vapiRef.current.stop();
     setIsCallActive(false);
     setIsLoading(false);
-    
-    if (audioObserverRef.current) {
-      audioObserverRef.current.disconnect();
-      audioObserverRef.current = null;
-    }
   };
 
   return { startCall, stopCall, isCallActive, isLoading };
 };
+
